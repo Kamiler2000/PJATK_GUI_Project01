@@ -1,0 +1,21 @@
+//=================================================================================================
+//Ver_0.1
+-first draft
+
+//TO DO:
+-first release
+
+//=================================================================================================
+//Ver_0.2
+
+-ChangeLog added
+-User Interface reviewed and modified
+-Menu improved
+-Menu feathures added
+-Images list export as ExportImageList class added
+-Menu items bechavior implemented
+
+//TO DO:
+-Improve ExportImageList class
+-Implement base loading
+-Meet the requirements of backend and user interface

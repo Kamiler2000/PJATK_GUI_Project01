@@ -34,9 +34,13 @@ public class Image {
 		imagesList.add(image);
 	}
 	
+	public static void clearImagesList() {
+		imagesList.clear();
+	}
+	
 	@Override
 	public String toString() {
-		return "Image [path=" + path + "]";
+		return path + ";" + author + ";" + location + ";" + date + ";" + tag;
 	}
 	
 	
