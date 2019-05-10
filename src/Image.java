@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+//=========================================================================================
+//This class implements every Image properties=============================================
+//=========================================================================================
+
 public class Image {
 	//Public static fields
 	private static List<Image> imagesList = new ArrayList<Image>();
@@ -28,16 +32,19 @@ public class Image {
 	public void setDate(String date)			{ this.date = date; }
 	public String getTag()						{ return tag; }
 	public void setTag(String tag)				{ this.tag = tag; }
-	public List<Image> getImagesList() 			{ return imagesList; }
+	public static List<Image> getImagesList() 	{ return imagesList; }
 	
+	//Add image to list
 	public static void addImage(Image image) {
 		imagesList.add(image);
 	}
 	
+	//Clear image list
 	public static void clearImagesList() {
 		imagesList.clear();
 	}
 	
+	//Image.String provide image informations as string
 	@Override
 	public String toString() {
 		return path + ";" + author + ";" + location + ";" + date + ";" + tag;

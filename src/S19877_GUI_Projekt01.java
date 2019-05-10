@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class S19877_GUI_Projekt01 {
 		//FileChooser------------------------------------------------------------------------------
 		JFileChooser fileOpenChooser = new JFileChooser();
 		JFileChooser fileSaveAsChooser = new JFileChooser();
+		JFileChooser fileChooserAdd = new JFileChooser();
 		
 		//Frame------------------------------------------------------------------------------------
 		JFrame mainFrame = new JFrame();
@@ -123,7 +125,6 @@ public class S19877_GUI_Projekt01 {
 		mImage.add(addImageFileItem);
 		addImageFileItem.enable(false);
 		mImage.add(editImageFileItem);
-
 		//Menu bars--------------------------------------------------------------------------------
 		menuBar.add(mFile);
 		menuBar.add(mImage);
@@ -159,8 +160,6 @@ public class S19877_GUI_Projekt01 {
 		//SaveAs File
 		saveAsFileItem.addActionListener(event -> fileSaveAsChooser.showSaveDialog(mainFrame));
 		fileSaveAsChooser.addActionListener(event -> {
-			//SaveAs file event
-			//JOptionPane.showMessageDialog(mainFrame, "SaveAs");
 			try {
 				ExportImegeList.Export(fileSaveAsChooser.getSelectedFile().getPath());
 			} catch (IOException e) {
@@ -174,19 +173,35 @@ public class S19877_GUI_Projekt01 {
 		fileOpenChooser.addActionListener(event -> {
 			//User should choose file
 			try{
-				Image image = new Image(fileOpenChooser.getSelectedFile().getPath());
-				ImageIcon iconFile = new ImageIcon(image.getPath());
-				picLabel.setIcon(iconFile);
-				ExportImegeList.filePath = fileOpenChooser.getSelectedFile().getPath();
+				String p = fileOpenChooser.getSelectedFile().getPath();
+				ImportImageList.Import(p);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+		});
+		
+		//Exit application
+		closeFileItem.addActionListener(e -> System.exit(0));
+		
+		//Add image
+		addImageFileItem.addActionListener(event -> fileChooserAdd.showOpenDialog(mainFrame));
+		fileChooserAdd.addActionListener(evant -> {
+			try{
+				Image.addImage(new Image(fileChooserAdd.getSelectedFile().getPath()));	
+				//TODO:		-show image
 			}
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(mainFrame, e, "File error", JOptionPane.WARNING_MESSAGE);
 			}
-			saveFileItem.setEnabled(false);
+			
+			saveFileItem.setEnabled(true);
 			saveAsFileItem.setEnabled(true);
 		});
-		
-		//Exit app
-		closeFileItem.addActionListener(e -> System.exit(0));
+			
+		//Edit item
+		editImageFileItem.addActionListener(event -> {
+			//TODO			-edit Image fields
+		});
 	}
 }
